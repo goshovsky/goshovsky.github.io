@@ -4,79 +4,89 @@
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="shortcut icon" href="/assets/images/fav_forest.png">
     <title>Portfolio | Welcome</title>
     <link rel="stylesheet" href="main.min.css">
   </head>
   <body>
     <div class="wrapper">
       <div class="maincontent">
-        <section class="welcome">
-          <div class="welcome__header-link"><a class="btn-auth" href="">Авторизоваться</a></div>
-          <div class="welcome__clip">
-            <div class="user welcome__user">
-              <div class="user__image"><img class="user__avatar" src="/assets/images/avatar.jpg"></div>
-              <div class="user__description">
-                <div class="user__name">Гошовский Артём</div>
-                <div class="user__info">Личный сайт разработчика</div>
-              </div>
-            </div>
-            <div class="social-links">
-              <ul class="socials welcome_socials">
-                <li class="socials__item"><a class="socials__link" href="http://vk.com">
-                    <svg class="socials__link-icon">
-                      <use xlink:href="/assets/images/icons/sprite.svg#vk"></use>
-                    </svg></a></li>
-                <li class="socials__item"><a class="socials__link" href="http://github.com">
-                    <svg class="socials__link-icon">
-                      <use xlink:href="/assets/images/icons/sprite.svg#github"></use>
-                    </svg></a></li>
-                <li class="socials__item"><a class="socials__link" href="http://linkedin.com">
-                    <svg class="socials__link-icon">
-                      <use xlink:href="/assets/images/icons/sprite.svg#in"></use>
-                    </svg></a></li>
-              </ul>
-            </div>
-            <div class="welcome_menu">
-              <ul class="menu-links">
-                <li class="menu__item"><a class="menu__link" href="/works.html">Мои работы</a></li>
-                <li class="menu__item"><a class="menu__link" href="/about.html">Обо мне</a></li>
-                <li class="menu__item"><a class="menu__link" href="/blog.html">Блог</a></li>
-              </ul>
-            </div>
+        <div class="Background">
+          <canvas class="Background-canvas"></canvas>
+        </div>
+        <section class="welcome" id="welcome">
+          <div class="welcome__header-link">
+            <button class="btn-auth" @click="switchCards" :class="{'active': isFlip, 'disabled': !isFlip }">Авторизоваться</button>
           </div>
-          <div class="auth__form-container">
-            <form class="auth-form">
-              <div class="auth-form__title">
-                <div class="block-subtitle block-subtitle_white">Связаться со мной</div>
-              </div>
-              <div class="auth-form__container">
-                <div class="auth-form__input-item"><i class="auth-form__input-icon auth-form__input-icon__login"></i>
-                  <input class="auth-form__input" type="text" placeholder="Логин">
-                </div>
-                <div class="auth-form__input-item"><i class="auth-form__input-icon auth-form__input-icon__password"></i>
-                  <input class="auth-form__input" type="password" placeholder="Пароль">
-                </div>
-                <div class="auth-form__captcha">
-                  <input class="auth-form__checkbox" type="checkbox" id="checkbox">
-                  <label class="auth-form__checkbox-label" for="checkbox">Я человек</label>
-                  <div class="auth-form__question">Вы точно не робот?</div>
-                  <div class="auth-form__radio-buttons">
-                    <div class="auth-form__radio-item">
-                      <input class="auth-form__radio-button" type="radio" id="radio">
-                      <label class="auth-form__radio-label" for="radio">Да</label>
-                    </div>
-                    <div class="auth-form__radio-item">
-                      <input class="auth-form__radio-button" type="radio" id="radio2">
-                      <label class="auth-form__radio-label" for="radio2">Не уверен</label>
-                    </div>
+          <div class="flip-container" :class="{'active': isFlip, 'disabled': !isFlip }">
+            <div class="flipper">
+              <div class="welcome__clip front">
+                <div class="user welcome__user">
+                  <div class="user__image"><img class="user__avatar" src="/assets/images/avatar.jpg"></div>
+                  <div class="user__description">
+                    <div class="user__name">Гошовский Артём</div>
+                    <div class="user__info">Личный сайт разработчика</div>
                   </div>
                 </div>
+                <div class="social-links">
+                  <ul class="socials welcome_socials">
+                    <li class="socials__item"><a class="socials__link" href="http://vk.com">
+                        <svg class="socials__link-icon">
+                          <use xlink:href="/assets/images/icons/sprite.svg#vk"></use>
+                        </svg></a></li>
+                    <li class="socials__item"><a class="socials__link" href="http://github.com">
+                        <svg class="socials__link-icon">
+                          <use xlink:href="/assets/images/icons/sprite.svg#github"></use>
+                        </svg></a></li>
+                    <li class="socials__item"><a class="socials__link" href="http://linkedin.com">
+                        <svg class="socials__link-icon">
+                          <use xlink:href="/assets/images/icons/sprite.svg#in"></use>
+                        </svg></a></li>
+                  </ul>
+                </div>
+                <div class="welcome_menu">
+                  <ul class="menu-links">
+                    <li class="menu__item"><a class="menu__link" href="/works.html">Мои работы</a></li>
+                    <li class="menu__item"><a class="menu__link" href="/about.html">Обо мне</a></li>
+                    <li class="menu__item"><a class="menu__link" href="/blog.html">Блог</a></li>
+                  </ul>
+                </div>
               </div>
-              <div class="auth-form__buttons">
-                <button class="auth-form__button">Отправить</button>
-                <button class="auth-form__button">Очистить</button>
+              <div class="auth__form-container back">
+                <form class="auth-form" id="auth" novalidate="true">
+                  <div class="auth-form__title">
+                    <div class="block-subtitle block-subtitle_white">Авторизоваться</div>
+                  </div>
+                  <div class="auth-form__container">
+                    <div class="auth-form__input-item input-success"><i class="auth-form__input-icon auth-form__input-icon__login"></i>
+                      <input class="auth-form__input" type="text" placeholder="Логин" id="login" v-model="login">
+                    </div>
+                    <div class="auth-form__input-item input-error"><i class="auth-form__input-icon auth-form__input-icon__password"></i>
+                      <input class="auth-form__input" type="password" placeholder="Пароль" id="pass" v-model="pass">
+                    </div>
+                    <div class="auth-form__captcha">
+                      <input class="auth-form__checkbox" type="checkbox" id="checkbox" v-model="checkbox">
+                      <label class="auth-form__checkbox-label" for="checkbox">Я человек</label>
+                      <div class="auth-form__question">Вы точно не робот?</div>
+                      <div class="auth-form__radio-buttons">
+                        <div class="auth-form__radio-item">
+                          <input class="auth-form__radio-button" type="radio" name="no-robot" id="radio">
+                          <label class="auth-form__radio-label" for="radio">Да</label>
+                        </div>
+                        <div class="auth-form__radio-item">
+                          <input class="auth-form__radio-button" type="radio" name="no-robot" id="radio2">
+                          <label class="auth-form__radio-label" for="radio2">Не уверен</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="auth-form__buttons">
+                    <button class="auth-form__button">Отправить</button>
+                    <button class="auth-form__button">Очистить</button>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           </div>
         </section>
       </div>
@@ -86,5 +96,7 @@
     </footer>
     <script src="bootloader.bundle.js"></script>
     <script src="vendor.bundle.js"></script>
+    <script src="assets/static/water.js"></script>
+    <script src="auth.bundle.js"></script>
   </body>
 </html>

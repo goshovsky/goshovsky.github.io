@@ -1,1 +1,1 @@
-webpackJsonp([3],{12:function(c,n,s){"use strict"}},[12]);
+webpackJsonp([3],{1:function(i,t,n){"use strict";var e,a=n(0);new((e=a)&&e.__esModule?e:{default:e}).default({el:"#internal",data:{isLoading:!1},methods:{activeChange:function(){this.isLoading=!this.isLoading}}})},13:function(i,t,n){"use strict";n(1)}},[13]);
