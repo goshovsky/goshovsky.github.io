@@ -53,38 +53,7 @@
                 </div>
               </div>
               <div class="auth__form-container back">
-                <form class="auth-form" id="auth" novalidate="true">
-                  <div class="auth-form__title">
-                    <div class="block-subtitle block-subtitle_white">Авторизоваться</div>
-                  </div>
-                  <div class="auth-form__container">
-                    <div class="auth-form__input-item input-success"><i class="auth-form__input-icon auth-form__input-icon__login"></i>
-                      <input class="auth-form__input" type="text" placeholder="Логин" id="login" v-model="login">
-                    </div>
-                    <div class="auth-form__input-item input-error"><i class="auth-form__input-icon auth-form__input-icon__password"></i>
-                      <input class="auth-form__input" type="password" placeholder="Пароль" id="pass" v-model="pass">
-                    </div>
-                    <div class="auth-form__captcha">
-                      <input class="auth-form__checkbox" type="checkbox" id="checkbox" v-model="checkbox">
-                      <label class="auth-form__checkbox-label" for="checkbox">Я человек</label>
-                      <div class="auth-form__question">Вы точно не робот?</div>
-                      <div class="auth-form__radio-buttons">
-                        <div class="auth-form__radio-item">
-                          <input class="auth-form__radio-button" type="radio" name="no-robot" id="radio">
-                          <label class="auth-form__radio-label" for="radio">Да</label>
-                        </div>
-                        <div class="auth-form__radio-item">
-                          <input class="auth-form__radio-button" type="radio" name="no-robot" id="radio2">
-                          <label class="auth-form__radio-label" for="radio2">Не уверен</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="auth-form__buttons">
-                    <button class="auth-form__button">Отправить</button>
-                    <button class="auth-form__button">Очистить</button>
-                  </div>
-                </form>
+                <div id="auth"></div>
               </div>
             </div>
           </div>
@@ -94,6 +63,42 @@
     <footer class="footer">
       <h2>Copyright Goshovskiy Artem &copy portfolio</h2>
     </footer>
+    <script type="text/x-template" id="auth-forms">
+      <div>
+        <form class="auth-form" id="auth" novalidate="true">
+          <div class="auth-form__title">
+            <div class="block-subtitle block-subtitle_white">Авторизоваться</div>
+          </div>
+          <div class="auth-form__container">
+            <div class="auth-form__input-item" :class="{'input-error': loginInput==='error', 'input-success': loginInput=='valid', '': loginInput== '' }"><i class="auth-form__input-icon auth-form__input-icon__login"></i>
+              <input class="auth-form__input" type="text" placeholder="Логин" v-model="login">
+            </div><span class="auth-form__tooltip"><span class="auth-form__tooltiptext" :class="{'show': loginError==true, '': !loginError }">Вы не ввели логин</span></span>
+            <div class="auth-form__input-item" :class="{'input-error': passInput==='error', 'input-success': passInput=='valid', '': passInput== '' }"><i class="auth-form__input-icon auth-form__input-icon__password"></i>
+              <input class="auth-form__input" type="password" placeholder="Пароль" v-model="pass">
+            </div><span class="auth-form__tooltip"><span class="auth-form__tooltiptext" :class="{'show': passError==true, '': !passError }">Вы не ввели пароль</span></span>
+            <div class="auth-form__captcha">
+              <input class="auth-form__checkbox" type="checkbox" id="checkbox" v-model="checkbox">
+              <label class="auth-form__checkbox-label" for="checkbox">Я человек</label>
+              <div class="auth-form__question">Вы точно не робот?</div>
+              <div class="auth-form__radio-buttons">
+                <div class="auth-form__radio-item">
+                  <input class="auth-form__radio-button" type="radio" name="no-robot" id="radio">
+                  <label class="auth-form__radio-label" for="radio">Да</label>
+                </div>
+                <div class="auth-form__radio-item">
+                  <input class="auth-form__radio-button" type="radio" checked="checked" name="no-robot" id="radio2">
+                  <label class="auth-form__radio-label" for="radio2">Не уверен</label>
+                </div>
+              </div>
+            </div><span class="auth-form__tooltip"><span class="auth-form__tooltiptext" :class="{'show': loginError==true, '': !loginError }">Подтвердите, что вы не робот</span></span>
+          </div>
+          <div class="auth-form__buttons">
+            <button class="auth-form__button">На главную</button>
+            <button class="auth-form__button" @click="loginFunc">Войти</button>
+          </div>
+        </form>
+      </div>
+    </script>
     <script src="bootloader.bundle.js"></script>
     <script src="vendor.bundle.js"></script>
     <script src="assets/static/water.js"></script>
