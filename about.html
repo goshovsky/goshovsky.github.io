@@ -92,7 +92,7 @@
         </section>
         <div class="clearfix"></div>
         <section class="map">
-          <div class="google-map"></div>
+          <div class="google-map" id="google-map"></div>
           <div class="map__data">
             <div class="contacts">
               <h2 class="contacts__title">
@@ -225,7 +225,7 @@
             <div class="block-subtitle">{{work.title}}</div>
           </div>
           <transition-group appear @before-enter="callback('before-enter')" @after-enter="callback('after-enter')" @enter="enterHandler">
-            <div class="slider__info-skills" :key="work.skills">{{work.skills}}</div>
+            <div class="slider__info-skills" :key="work.techs">{{work.techs}}</div>
           </transition-group>
           <div class="slider__info-button"><a class="button" :href="work.link" target="_blank">Посмотреть сайт</a></div>
         </div>
@@ -288,6 +288,7 @@
     </script>
     <script src="bootloader.bundle.js"></script>
     <script src="vendor.bundle.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-Phrt2ecty1kWso5MTjS3wzIqnZdwKA"></script>
     <script src="about.bundle.js"></script>
   </body>
 </html>
