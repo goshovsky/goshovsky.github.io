@@ -59,7 +59,7 @@
             <div class="blog__left">
               <div class="menu-circle" @click="showMenu" :class="{'active': isShowMenu, '': !isShowMenu }"></div>
               <aside class="sidebar" :class="{'active': isShowMenu, '': !isShowMenu }">
-                <nav class="menu-left">
+                <nav class="menu-left" :scroll="handleScroll" :class="{'fixed': isFixed, '': !isFixed }">
                   <ul class="menu-left__list" v-for="item in posts">
                     <li class="menu-left__item"><a class="menu-left__link">{{ item.title }}</a></li>
                   </ul>
@@ -231,7 +231,6 @@
     </script>
     <script src="bootloader.bundle.js"></script>
     <script src="vendor.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="blog.bundle.js"></script>
   </body>
 </html>
